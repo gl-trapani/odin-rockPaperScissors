@@ -1,5 +1,13 @@
 <script>
-    let computerChoice = () => {
+
+let humanScore = 0;
+let computerScore = 0;
+
+
+let getHumanChoice = () => {
+    return prompt("Rock, paper, scissors?").toLowerCase();
+}
+let getComputerChoice = () => {
         let randomNumber = Math.floor(Math.random() * 3);
 
         if (randomNumber == 0){
@@ -11,7 +19,50 @@
         }
     }
 
-console.log(computerChoice());
+let playRound = (humanChoice, computerChoice) => {
+    if (humanChoice == "rock" && computerChoice == "scissors") {
+        humanScore = humanScore + 1;
+        return "You Win! Rock beats Scissors";
+    } else if (humanChoice == "rock" && computerChoice == "paper") {
+        computerScore = computerScore + 1;
+        return "You Loose! Paper beats Rock";
+    } else if (humanChoice == "rock" && computerChoice == "rock") {
+        return "Draw";
+    }  else if (humanChoice == "paper" && computerChoice == "scissors") {
+        computerScore = computerScore + 1;
+        return "You Loose! Scissors beats Paper";
+    } else if (humanChoice == "paper" && computerChoice == "paper") {
+        return "Draw";
+    } else if (humanChoice == "paper" && computerChoice == "rock"){
+        humanScore = humanScore + 1;
+        return "You Win! Paper beats Rock";
+    } else if (humanChoice == "scissors" && computerChoice == "rock") {
+        computerScore = computerScore + 1;
+        return "You Loose! Rock beats Scissors";        
+    } else if (humanChoice = "scissors" && computerChoice == "paper") {
+        humanScore = humanScore + 1;
+        return "You Win! Rock beats Scissors"; 
+    } else if (humanChoice = "scissors" && computerChoice == "scissors") {
+        return "Draw";
+    }
+}
 
+let playGame = () => {
+    for (let i = 0; i < 5; i++) {
+        let humanSelection = getHumanChoice();
+        let computerSelection = getComputerChoice();
+        console.log(playRound(humanSelection, computerSelection));
+    }
 
+    if (humanScore == computerScore) {
+        alert("Its a Tie!" + "\nHuman: " + humanScore + "\nComputer: " + computerScore);
+    } else if (humanScore > computerScore) {
+        alert("You Win!" + "\nHuman: " + humanScore + "\nComputer: " + computerScore);
+    } else if (humanScore < computerScore) {
+        alert("You Loose!" + "\nHuman: " + humanScore + " " + "\nComputer: " + computerScore);
+    }
+
+}
+
+playGame();
 </script>
